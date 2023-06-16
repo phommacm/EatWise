@@ -60,7 +60,7 @@ const HealthGoalsScreen = () => {
       bmr = 447.593 + (9.247 * weightInKg) + (3.098 * heightInCm) - (4.330 * ageInYears);
     }
 
-    return bmr;
+    return bmr.toFixed(0);
   };
 
   const isFormValid = age.trim() !== '' && gender.trim() !== '' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && healthGoal.trim() !== '';
