@@ -47,7 +47,7 @@ const HealthGoalsScreen = () => {
     });
   };
 
-  const isFormValid = age && gender && height && weight && activityLevel && healthGoal;
+  const isFormValid = age.trim() !== '' && gender.trim() !== '' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && healthGoal.trim() !== '';
 
   return (
     <View style={styles.container}>
