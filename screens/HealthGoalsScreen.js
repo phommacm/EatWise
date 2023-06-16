@@ -47,6 +47,22 @@ const HealthGoalsScreen = () => {
     });
   };
 
+  const calculateBMR = () => {
+    const weightInKg = parseFloat(weight);
+    const heightInCm = parseFloat(height);
+    const ageInYears = parseFloat(age);
+
+    let bmr = 0;
+
+    if (gender === 'male') {
+      bmr = 88.362 + (13.397 * weightInKg) + (4.799 * heightInCm) - (5.677 * ageInYears);
+    } else if (gender === 'female') {
+      bmr = 447.593 + (9.247 * weightInKg) + (3.098 * heightInCm) - (4.330 * ageInYears);
+    }
+
+    return bmr;
+  };
+
   const isFormValid = age.trim() !== '' && gender.trim() !== '' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && healthGoal.trim() !== '';
 
   return (
@@ -112,6 +128,10 @@ const HealthGoalsScreen = () => {
         </Picker>
 
         <Button title="Submit" onPress={handleSubmit} disabled={!isFormValid} />
+
+        {isFormValid && (
+          <Text style={styles.bmrText}>BMR: {calculateBMR()} calories</Text>
+        )}
       </View>
     </View>
   );
@@ -143,6 +163,11 @@ const styles = StyleSheet.create({
   },
   picker: {
     marginBottom: 16,
+  },
+  bmrText: {
+    fontSize: 18,
+    marginTop: 16,
+    fontWeight: 'bold',
   },
 });
 
