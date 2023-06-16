@@ -75,6 +75,9 @@ const HealthGoalsScreen = () => {
       case 'very_active':
         adjustedBMR = bmr * 1.725;
         break;
+      case 'super_active':
+        adjustedBMR = bmr * 1.9;
+        break;
       default:
         adjustedBMR = bmr;
         break;
