@@ -47,6 +47,8 @@ const HealthGoalsScreen = () => {
     });
   };
 
+  const isFormValid = age && gender && height && weight && activityLevel && healthGoal;
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Health Goals</Text>
@@ -108,7 +110,7 @@ const HealthGoalsScreen = () => {
           <Picker.Item label="Weight Gain" value="weight_gain" />
         </Picker>
 
-        <Button title="Submit" onPress={handleSubmit} />
+        <Button title="Submit" onPress={handleSubmit} disabled={!isFormValid} />
       </View>
     </View>
   );
