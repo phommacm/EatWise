@@ -51,16 +51,36 @@ const HealthGoalsScreen = () => {
     const weightInKg = parseFloat(weight);
     const heightInCm = parseFloat(height);
     const ageInYears = parseFloat(age);
-
+  
     let bmr = 0;
-
+  
     if (gender === 'male') {
       bmr = 88.362 + (13.397 * weightInKg) + (4.799 * heightInCm) - (5.677 * ageInYears);
     } else if (gender === 'female') {
       bmr = 447.593 + (9.247 * weightInKg) + (3.098 * heightInCm) - (4.330 * ageInYears);
     }
-
-    return bmr.toFixed(0);
+  
+    let adjustedBMR = 0;
+  
+    switch (activityLevel) {
+      case 'sedentary':
+        adjustedBMR = bmr * 1.2;
+        break;
+      case 'lightly_active':
+        adjustedBMR = bmr * 1.375;
+        break;
+      case 'moderately_active':
+        adjustedBMR = bmr * 1.55;
+        break;
+      case 'very_active':
+        adjustedBMR = bmr * 1.725;
+        break;
+      default:
+        adjustedBMR = bmr;
+        break;
+    }
+  
+    return adjustedBMR.toFixed(0);
   };
 
   const isFormValid = age.trim() !== '' && gender.trim() !== '' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && healthGoal.trim() !== '';
