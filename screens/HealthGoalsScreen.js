@@ -83,8 +83,22 @@ const HealthGoalsScreen = () => {
         break;
     }
   
-    return adjustedBMR.toFixed(0);
-  };
+  let adjustedCaloricIntake = adjustedBMR;
+
+  switch (healthGoal) {
+    case 'weight_loss':
+      adjustedCaloricIntake = adjustedBMR * 0.9;
+      break;
+    case 'weight_gain':
+      adjustedCaloricIntake = adjustedBMR * 1.1;
+      break;
+    default:
+      adjustedCaloricIntake = adjustedBMR;
+      break;
+  }
+
+  return adjustedCaloricIntake.toFixed(0);
+};
 
   const isFormValid = age.trim() !== '' && gender.trim() !== '' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && healthGoal.trim() !== '';
 
