@@ -105,7 +105,7 @@ const HealthGoalsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Health Goals</Text>
+      <Text style={styles.header}>Personalize Your Health Journey</Text>
       <View style={styles.form}>
         <Text style={styles.label}>Age</Text>
         <TextInput

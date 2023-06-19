@@ -12,7 +12,7 @@ const FoodDatabaseScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Food Database</Text>
+      <Text style={styles.header}>Find Healthy Choices</Text>
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
