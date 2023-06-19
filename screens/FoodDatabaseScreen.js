@@ -27,7 +27,6 @@ const FoodDatabaseScreen = () => {
       )
         .then(response => response.json())
         .then(data => {
-          console.log('Search Results:', data);
           if (data.common && data.common.length > 0) {
             const commonFood = data.common[0];
             const foodName = commonFood.food_name;
@@ -46,7 +45,6 @@ const FoodDatabaseScreen = () => {
             })
               .then(response => response.json())
               .then(data => {
-                console.log('Nutrition Data:', data);
                 if (data.foods && data.foods.length > 0) {
                   const food = data.foods[0];
                   setFoodName(food.food_name);
