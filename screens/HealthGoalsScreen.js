@@ -100,7 +100,7 @@ const HealthGoalsScreen = () => {
   return adjustedCaloricIntake.toFixed(0);
 };
 
-  const isFormValid = age.trim() !== '' && gender.trim() !== '' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && healthGoal.trim() !== '';
+  const isFormValid = age.trim() !== '' && gender.trim() !== '' && gender !== 'choose_option' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && activityLevel !== 'choose_option' && healthGoal.trim() !== '' && healthGoal !== 'choose_option';
 
   return (
     <View style={styles.container}>
@@ -120,6 +120,7 @@ const HealthGoalsScreen = () => {
           selectedValue={gender}
           onValueChange={handleGenderChange}
         >
+          <Picker.Item label="Choose an option" value="choose_option" />
           <Picker.Item label="Male" value="male" />
           <Picker.Item label="Female" value="female" />
         </Picker>
@@ -146,6 +147,7 @@ const HealthGoalsScreen = () => {
           selectedValue={activityLevel}
           onValueChange={handleActivityLevelChange}
         >
+          <Picker.Item label="Choose an option" value="choose_option" />
           <Picker.Item label="Sedentary" value="sedentary" />
           <Picker.Item label="Lightly active" value="lightly_active" />
           <Picker.Item label="Moderately active" value="moderately_active" />
@@ -159,6 +161,7 @@ const HealthGoalsScreen = () => {
           selectedValue={healthGoal}
           onValueChange={handleHealthGoalChange}
         >
+          <Picker.Item label="Choose an option" value="choose_option" />
           <Picker.Item label="Weight Loss" value="weight_loss" />
           <Picker.Item label="Weight Maintenance" value="weight_maintenance" />
           <Picker.Item label="Weight Gain" value="weight_gain" />
