@@ -1,5 +1,7 @@
 // HealthGoalsScreen.js
 
+// HealthGoalsScreen.js
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
@@ -199,11 +201,15 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderColor: '#ccc',
-    marginBottom: 16,
+    marginBottom: 8,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 8,
     paddingHorizontal: 10,
   },
   picker: {
     marginBottom: 16,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 8,
   },
   bmrText: {
     fontSize: 18,
