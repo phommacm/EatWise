@@ -1,12 +1,13 @@
 // FoodDatabaseScreen.js
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
 
 const FoodDatabaseScreen = () => {
   const [searchFood, setSearchFood] = useState('');
   const [foodName, setFoodName] = useState('');
   const [calories, setCalories] = useState('');
+  const [image, setImage] = useState('');
   const [error, setError] = useState('');
 
   const handleSearch = () => {
@@ -30,6 +31,7 @@ const FoodDatabaseScreen = () => {
           if (data.common && data.common.length > 0) {
             const commonFood = data.common[0];
             const foodName = commonFood.food_name;
+            const image = commonFood.photo.thumb;
 
             fetch('https://trackapi.nutritionix.com/v2/natural/nutrients', {
               method: 'POST',
@@ -63,9 +65,11 @@ const FoodDatabaseScreen = () => {
                 setError('Error fetching nutrition data. Please try again.');
               });
 
+            setImage(image);
           } else {
             setFoodName('');
             setCalories('');
+            setImage('');
             setError('Food not found');
           }
         })
@@ -73,6 +77,7 @@ const FoodDatabaseScreen = () => {
           console.log('Error fetching search data:', error);
           setFoodName('');
           setCalories('');
+          setImage('');
           setError('Error fetching search data. Please try again.');
         });
     }
@@ -92,6 +97,9 @@ const FoodDatabaseScreen = () => {
       </View>
       {foodName !== '' && (
         <View style={styles.resultContainer}>
+          {image !== '' && (
+            <Image source={{ uri: image }} style={styles.image} />
+          )}
           <Text style={styles.resultLabel}>Food Name:</Text>
           <Text style={styles.resultText}>{foodName}</Text>
           {calories !== '' && (
@@ -135,6 +143,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 16,
+  },
+  image: {
+    width: 150,
+    height: 150,
+    marginBottom: 16,
   },
   resultLabel: {
     fontSize: 16,
