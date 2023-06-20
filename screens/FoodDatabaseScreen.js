@@ -1,5 +1,8 @@
 // FoodDatabaseScreen.js
 
+// Implementing a functionality that allows users 
+// to search for foods and view their nutritional information.
+
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
 

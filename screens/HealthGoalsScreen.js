@@ -1,6 +1,8 @@
 // HealthGoalsScreen.js
 
-// HealthGoalsScreen.js
+// Implementing a functionality that allows users to set their health 
+// goals and receive daily suggestions for their recommended caloric 
+// intake based on those goals.
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
