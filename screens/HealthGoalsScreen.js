@@ -172,7 +172,7 @@ const HealthGoalsScreen = () => {
           <Picker.Item label="Weight Gain" value="weight_gain" />
         </Picker>
 
-        <Button title="Submit" onPress={handleSubmit} disabled={!isFormValid} />
+        <Button title="Submit" onPress={handleSubmit} disabled={!isFormValid} color="orange" />
 
         {isFormValid && (
           <Text style={styles.bmrText}>BMR: {calculateBMR()} calories</Text>

@@ -94,7 +94,7 @@ const FoodDatabaseScreen = () => {
           onChangeText={setSearchFood}
           placeholder="Enter food name"
         />
-        <Button title="Search" onPress={handleSearch} />
+        <Button title="Search" onPress={handleSearch} color="orange" />
       </View>
       {foodName !== '' && (
         <View style={styles.resultContainer}>
