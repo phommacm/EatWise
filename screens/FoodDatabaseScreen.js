@@ -142,6 +142,8 @@ const FoodDatabaseScreen = () => {
       {error !== '' && <Text style={styles.error}>{error}</Text>}
       <Modal
         visible={showSelectionModal}
+        animationType="slide"
+        transparent={true}
         onRequestClose={() => setShowSelectionModal(false)}
       >
         <View style={styles.modalContainer}>
@@ -164,7 +166,7 @@ const FoodDatabaseScreen = () => {
             >
               <Picker.Item label="Select meal" value="" />
               <Picker.Item label="Breakfast" value="breakfast" />
-              <Picker.Item label="LUnch" value="lunch" />
+              <Picker.Item label="Lunch" value="lunch" />
               <Picker.Item label="Dinner" value="dinner" />
               <Picker.Item label="Snack" value="snack" />
             </Picker>
@@ -243,6 +245,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
     backgroundColor: '#fff',
@@ -258,6 +261,7 @@ const styles = StyleSheet.create({
   },
   modalLabel: {
     fontSize: 16,
+    fontWeight: 'bold',
     marginBottom: 8,
   },
   modalText: {

@@ -1,6 +1,6 @@
 // MealPlanningScreen.js
 
-// Implementing a functionality that allows users to plan their meals for the week 
+// Implementing a functionality that allows users to plan their meals for the week
 // and get a summary of the planned meals with the total calories for each day.
 
 import React from 'react';
