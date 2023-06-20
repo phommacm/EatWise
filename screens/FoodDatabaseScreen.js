@@ -1,10 +1,11 @@
 // FoodDatabaseScreen.js
 
-// Implementing a functionality that allows users 
+// Implementing a functionality that allows users
 // to search for foods and view their nutritional information.
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Image, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 
 const FoodDatabaseScreen = () => {
   const [searchFood, setSearchFood] = useState('');
@@ -12,6 +13,10 @@ const FoodDatabaseScreen = () => {
   const [calories, setCalories] = useState('');
   const [image, setImage] = useState('');
   const [error, setError] = useState('');
+  const [showSelectionModal, setShowSelectionModal] = useState(false);
+  const [selectedFood, setSelectedFood] = useState(null);
+  const [quantity, setQuantity] = useState('');
+  const [selectedMeal, setSelectedMeal] = useState('');
 
   const handleSearch = () => {
     if (searchFood.trim() !== '') {
@@ -84,9 +89,26 @@ const FoodDatabaseScreen = () => {
     }
   };
 
+  const handleFoodSelection = (food) => {
+    setSelectedFood(food);
+    setShowSelectionModal(true);
+  };
+
+  const handleAddToMealPlan = () => {
+    // To remove later
+    console.log('Selected food:', selectedFood);
+    console.log('Quantity:', quantity);
+    console.log('Meal:', selectedMeal);
+
+    setSelectedFood(null);
+    setQuantity('');
+    setSelectedMeal('');
+    setShowSelectionModal(false);
+  };
+
   return (
     <View style={styles.container}>
-        <Text style={styles.header}>Find Healthy Choices</Text>
+      <Text style={styles.header}>Find Healthy Choices</Text>
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
@@ -109,9 +131,52 @@ const FoodDatabaseScreen = () => {
               <Text style={styles.resultText}>{calories}</Text>
             </>
           )}
+          <TouchableOpacity
+            style={styles.selectButton}
+            onPress={() => handleFoodSelection({ foodName, calories })}
+          >
+            <Text style={styles.selectButtonText}>Select Food</Text>
+          </TouchableOpacity>
         </View>
       )}
       {error !== '' && <Text style={styles.error}>{error}</Text>}
+      <Modal
+        visible={showSelectionModal}
+        onRequestClose={() => setShowSelectionModal(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Add to Meal Plan</Text>
+            <Text style={styles.modalLabel}>Food Name:</Text>
+            <Text style={styles.modalText}>{selectedFood?.foodName}</Text>
+            <Text style={styles.modalLabel}>Quantity:</Text>
+            <TextInput
+              style={styles.modalInput}
+              value={quantity}
+              onChangeText={setQuantity}
+              keyboardType="numeric"
+            />
+            <Text style={styles.modalLabel}>Meal:</Text>
+            <Picker
+              style={styles.modalPicker}
+              selectedValue={selectedMeal}
+              onValueChange={(value) => setSelectedMeal(value)}
+            >
+              <Picker.Item label="Select meal" value="" />
+              <Picker.Item label="Breakfast" value="breakfast" />
+              <Picker.Item label="LUnch" value="lunch" />
+              <Picker.Item label="Dinner" value="dinner" />
+              <Picker.Item label="Snack" value="snack" />
+            </Picker>
+            <Button
+              title="Add to Meal Plan"
+              onPress={handleAddToMealPlan}
+              disabled={!quantity || !selectedMeal}
+            />
+            <Button title="Cancel" onPress={() => setShowSelectionModal(false)} color="orange" />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -161,6 +226,52 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red',
+    marginBottom: 16,
+  },
+  selectButton: {
+    backgroundColor: 'orange',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 4,
+    marginTop: 16,
+  },
+  selectButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    marginHorizontal: 32,
+    padding: 16,
+    borderRadius: 4,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  modalLabel: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 16,
+  },
+  modalInput: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginBottom: 16,
+    paddingHorizontal: 10,
+  },
+  modalPicker: {
     marginBottom: 16,
   },
 });
