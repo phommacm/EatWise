@@ -102,7 +102,7 @@ const HealthGoalsScreen = () => {
       break;
   }
 
-  return adjustedCaloricIntake.toFixed(0);
+  return adjustedCaloricIntake.toFixed(2);
 };
 
   const isFormValid = age.trim() !== '' && gender.trim() !== '' && gender !== 'choose_option' && height.trim() !== '' && weight.trim() !== '' && activityLevel.trim() !== '' && activityLevel !== 'choose_option' && healthGoal.trim() !== '' && healthGoal !== 'choose_option';
