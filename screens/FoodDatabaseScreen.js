@@ -3,11 +3,14 @@
 // Implementing a functionality that allows users
 // to search for foods and view their nutritional information.
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Button, Image, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { MealPlanContext } from '../MealPlanContext';
 
 const FoodDatabaseScreen = () => {
+  const { mealPlan, addToMealPlan } = useContext(MealPlanContext);
+
   const [searchFood, setSearchFood] = useState('');
   const [foodName, setFoodName] = useState('');
   const [calories, setCalories] = useState('');
@@ -17,6 +20,7 @@ const FoodDatabaseScreen = () => {
   const [selectedFood, setSelectedFood] = useState(null);
   const [quantity, setQuantity] = useState('');
   const [selectedMeal, setSelectedMeal] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
 
   const handleSearch = () => {
     if (searchFood.trim() !== '') {
@@ -95,15 +99,19 @@ const FoodDatabaseScreen = () => {
   };
 
   const handleAddToMealPlan = () => {
-    // To remove later
-    console.log('Selected food:', selectedFood);
-    console.log('Quantity:', quantity);
-    console.log('Meal:', selectedMeal);
+    if (selectedFood && quantity && selectedMeal && selectedDay) {
+      addToMealPlan(selectedDay, selectedMeal, {
+        foodName: selectedFood.foodName,
+        calories: selectedFood.calories,
+        quantity: quantity,
+      });
 
-    setSelectedFood(null);
-    setQuantity('');
-    setSelectedMeal('');
-    setShowSelectionModal(false);
+      setSelectedFood(null);
+      setQuantity('');
+      setSelectedMeal('');
+      setSelectedDay('');
+      setShowSelectionModal(false);
+    }
   };
 
   return (
@@ -165,15 +173,30 @@ const FoodDatabaseScreen = () => {
               onValueChange={(value) => setSelectedMeal(value)}
             >
               <Picker.Item label="Select meal" value="" />
-              <Picker.Item label="Breakfast" value="breakfast" />
-              <Picker.Item label="Lunch" value="lunch" />
-              <Picker.Item label="Dinner" value="dinner" />
-              <Picker.Item label="Snack" value="snack" />
+              <Picker.Item label="Breakfast" value="Breakfast" />
+              <Picker.Item label="Lunch" value="Lunch" />
+              <Picker.Item label="Dinner" value="Dinner" />
+              <Picker.Item label="Snack" value="Snack" />
+            </Picker>
+            <Text style={styles.modalLabel}>Day:</Text>
+            <Picker
+              style={styles.modalPicker}
+              selectedValue={selectedDay}
+              onValueChange={(value) => setSelectedDay(value)}
+            >
+              <Picker.Item label="Select day" value="" />
+              <Picker.Item label="Monday" value="Monday" />
+              <Picker.Item label="Tuesday" value="Tuesday" />
+              <Picker.Item label="Wednesday" value="Wednesday" />
+              <Picker.Item label="Thursday" value="Thursday" />
+              <Picker.Item label="Friday" value="Friday" />
+              <Picker.Item label="Saturday" value="Saturday" />
+              <Picker.Item label="Sunday" value="Sunday" />
             </Picker>
             <Button
               title="Add to Meal Plan"
               onPress={handleAddToMealPlan}
-              disabled={!quantity || !selectedMeal}
+              disabled={!quantity || !selectedMeal || !selectedDay}
             />
             <Button title="Cancel" onPress={() => setShowSelectionModal(false)} color="orange" />
           </View>
