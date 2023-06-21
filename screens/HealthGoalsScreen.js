@@ -41,7 +41,6 @@ const HealthGoalsScreen = () => {
   };
 
   const handleSubmit = () => {
-    // Subject to change, debug purpose as of now
     console.log('Form submitted:', {
       age,
       gender,

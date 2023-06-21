@@ -6,9 +6,15 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { MealPlanContext } from '../MealPlanContext';
+import { useNavigation } from '@react-navigation/native';
 
 const MealPlanningScreen = () => {
   const { mealPlan, removeFromMealPlan } = useContext(MealPlanContext);
+  const navigation = useNavigation();
+
+  const handleAddFood = () => {
+    navigation.navigate('Food Database');
+  };
 
   const calculateMealCalories = (foods) => {
     let totalCalories = 0;
@@ -30,6 +36,9 @@ const MealPlanningScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
+        <TouchableOpacity style={styles.addButton} onPress={handleAddFood}>
+          <Text style={styles.addButtonLabel}>ADD FOOD</Text>
+        </TouchableOpacity>
         {Object.entries(mealPlan).map(([day, meals]) => (
           <View key={day} style={styles.dayContainer}>
             <Text style={styles.dayTitle}>{day}</Text>
@@ -124,6 +133,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 12,
+  },
+  addButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'green',
+    borderRadius: 4,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+  },
+  addButtonLabel: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 });
 
