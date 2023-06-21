@@ -196,7 +196,7 @@ const FoodDatabaseScreen = () => {
             <Button
               title="Add to Meal Plan"
               onPress={handleAddToMealPlan}
-              disabled={!quantity || !selectedMeal || !selectedDay}
+              disabled={!quantity || !selectedMeal || !selectedDay || quantity === '0'}
             />
             <Button title="Cancel" onPress={() => setShowSelectionModal(false)} color="orange" />
           </View>
