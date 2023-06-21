@@ -10,6 +10,23 @@ import { MealPlanContext } from '../MealPlanContext';
 const MealPlanningScreen = () => {
   const { mealPlan } = useContext(MealPlanContext);
 
+  const calculateMealCalories = (foods) => {
+    let totalCalories = 0;
+    foods.forEach((food) => {
+      totalCalories += parseFloat(food.calories) * parseFloat(food.quantity);
+    });
+    return totalCalories;
+  };
+
+  const calculateDayCalories = (day) => {
+    let totalCalories = 0;
+    const meals = mealPlan[day];
+    Object.values(meals).forEach((foods) => {
+      totalCalories += calculateMealCalories(foods);
+    });
+    return totalCalories;
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
@@ -22,12 +39,20 @@ const MealPlanningScreen = () => {
                 {foods.length === 0 ? (
                   <Text>No food items yet</Text>
                 ) : (
-                  foods.map((food, index) => (
-                    <Text key={index}>{food.foodName} - {food.calories}</Text>
-                  ))
+                  <>
+                    {foods.map((food, index) => (
+                      <Text key={index}>{food.foodName} x {food.quantity} — {food.calories} calories</Text>
+                    ))}
+                    <Text style={styles.caloriesText}>
+                      Total Calories: {calculateMealCalories(foods)}
+                    </Text>
+                  </>
                 )}
               </View>
             ))}
+            <Text style={styles.dayCalories}>
+              Total Calories for {day}: {calculateDayCalories(day)}
+            </Text>
           </View>
         ))}
       </View>
@@ -46,6 +71,7 @@ const styles = StyleSheet.create({
   dayTitle: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: 'darkgreen',
     marginBottom: 8,
   },
   mealContainer: {
@@ -57,6 +83,18 @@ const styles = StyleSheet.create({
   mealTitle: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'green',
+  },
+  caloriesText: {
+    marginTop: 8,
+    fontWeight: 'bold',
+    color: 'orange',
+  },
+  dayCalories: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'orange',
   },
 });
 
