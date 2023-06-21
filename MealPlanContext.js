@@ -67,8 +67,21 @@ export const MealPlanProvider = ({ children }) => {
     setMealPlan(updatedMealPlan);
   };
 
+  const removeFromMealPlan = (day, mealType, foodIndex) => {
+    const updatedMealPlan = { ...mealPlan };
+
+    if (
+      updatedMealPlan[day] &&
+      updatedMealPlan[day][mealType] &&
+      updatedMealPlan[day][mealType].length > foodIndex
+    ) {
+      updatedMealPlan[day][mealType].splice(foodIndex, 1);
+      setMealPlan(updatedMealPlan);
+    }
+  };
+
   return (
-    <MealPlanContext.Provider value={{ mealPlan, addToMealPlan }}>
+    <MealPlanContext.Provider value={{ mealPlan, addToMealPlan, removeFromMealPlan }}>
       {children}
     </MealPlanContext.Provider>
   );

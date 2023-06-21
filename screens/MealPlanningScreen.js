@@ -4,11 +4,11 @@
 // and get a summary of the planned meals with the total calories for each day.
 
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { MealPlanContext } from '../MealPlanContext';
 
 const MealPlanningScreen = () => {
-  const { mealPlan } = useContext(MealPlanContext);
+  const { mealPlan, removeFromMealPlan } = useContext(MealPlanContext);
 
   const calculateMealCalories = (foods) => {
     let totalCalories = 0;
@@ -24,7 +24,7 @@ const MealPlanningScreen = () => {
     Object.values(meals).forEach((foods) => {
       totalCalories += calculateMealCalories(foods);
     });
-    return totalCalories;
+    return totalCalories.toFixed(2);
   };
 
   return (
@@ -40,11 +40,19 @@ const MealPlanningScreen = () => {
                   <Text>No food items yet</Text>
                 ) : (
                   <>
-                    {foods.map((food, index) => (
-                      <Text key={index}>{food.foodName} x {food.quantity} — {food.calories} calories</Text>
+                    {foods.map((food, foodIndex) => (
+                      <View key={foodIndex} style={styles.foodItemContainer}>
+                        <Text style={styles.foodItemText}>{food.foodName} x {food.quantity} — {food.calories} calories</Text>
+                        <TouchableOpacity
+                          style={styles.removeButton}
+                          onPress={() => removeFromMealPlan(day, mealType, foodIndex)}
+                        >
+                          <Text style={styles.removeButtonText}>X</Text>
+                        </TouchableOpacity>
+                      </View>
                     ))}
                     <Text style={styles.caloriesText}>
-                      Total Calories: {calculateMealCalories(foods)}
+                      Total Calories: {calculateMealCalories(foods).toFixed(2)}
                     </Text>
                   </>
                 )}
@@ -95,6 +103,27 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#00A36C',
+  },
+  foodItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  foodItemText: {
+    flex: 1,
+  },
+  removeButton: {
+    marginLeft: 8,
+    backgroundColor: 'red',
+    borderRadius: 4,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+  },
+  removeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 12,
   },
 });
 

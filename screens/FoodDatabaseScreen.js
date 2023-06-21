@@ -9,7 +9,7 @@ import { Picker } from '@react-native-picker/picker';
 import { MealPlanContext } from '../MealPlanContext';
 
 const FoodDatabaseScreen = () => {
-  const { mealPlan, addToMealPlan } = useContext(MealPlanContext);
+  const { addToMealPlan } = useContext(MealPlanContext);
 
   const [searchFood, setSearchFood] = useState('');
   const [foodName, setFoodName] = useState('');
