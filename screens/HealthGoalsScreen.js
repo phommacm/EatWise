@@ -154,10 +154,10 @@ const HealthGoalsScreen = () => {
         >
           <Picker.Item label="Choose an option" value="choose_option" />
           <Picker.Item label="Sedentary" value="sedentary" />
-          <Picker.Item label="Lightly active" value="lightly_active" />
-          <Picker.Item label="Moderately active" value="moderately_active" />
-          <Picker.Item label="Very active" value="very_active" />
-          <Picker.Item label="Super active" value="super_active" />
+          <Picker.Item label="Lightly active (exercise 1-3 days/week)" value="lightly_active" />
+          <Picker.Item label="Moderately active (exercise 3-5 days/week)" value="moderately_active" />
+          <Picker.Item label="Very active (exercise 6-7 days/week)" value="very_active" />
+          <Picker.Item label="Super active (exercise 2x/day)" value="super_active" />
         </Picker>
 
         <Text style={styles.label}>Health Goal</Text>
