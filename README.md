@@ -50,6 +50,4 @@ Then, simply open `Expo Go` on your phone and scan the QR Code to get started!
 
 ## Licence
 
-All rights belong to their respective owners.
-
-All logos used and displayed in this application are the property of their respective owners. Their use is purely for educational purposes.
+© All rights reserved. All rights belong to their respective owners. All logos used and displayed in this application are the property of their respective owners. Their use is purely for educational purposes.
