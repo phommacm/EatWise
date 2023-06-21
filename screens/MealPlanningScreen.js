@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
   caloriesText: {
     marginTop: 8,
     fontWeight: 'bold',
-    color: 'orange',
+    color: '#00A36C',
   },
   dayCalories: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'orange',
+    color: '#00A36C',
   },
 });
 

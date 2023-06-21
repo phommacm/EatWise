@@ -172,7 +172,7 @@ const HealthGoalsScreen = () => {
           <Picker.Item label="Weight Gain" value="weight_gain" />
         </Picker>
 
-        <Button title="Submit" onPress={handleSubmit} disabled={!isFormValid} color="orange" />
+        <Button title="Submit" onPress={handleSubmit} disabled={!isFormValid} color="#00A36C" />
 
         {isFormValid && (
           <Text style={styles.bmrText}>BMR: {calculateBMR()} calories</Text>
@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: 'darkgreen',
     marginBottom: 16,
   },
   form: {
@@ -197,6 +198,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 18,
+    fontWeight: 'bold',
+    color: 'green',
     marginBottom: 8,
   },
   input: {
@@ -217,6 +220,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 16,
     fontWeight: 'bold',
+    color: '#00A36C',
   },
 });
 

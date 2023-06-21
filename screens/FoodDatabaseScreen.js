@@ -124,7 +124,7 @@ const FoodDatabaseScreen = () => {
           onChangeText={setSearchFood}
           placeholder="Enter food name"
         />
-        <Button title="Search" onPress={handleSearch} color="orange" />
+        <Button title="Search" onPress={handleSearch} color="#00A36C" />
       </View>
       {foodName !== '' && (
         <View style={styles.resultContainer}>
@@ -143,7 +143,7 @@ const FoodDatabaseScreen = () => {
             style={styles.selectButton}
             onPress={() => handleFoodSelection({ foodName, calories })}
           >
-            <Text style={styles.selectButtonText}>Select Food</Text>
+            <Text style={styles.selectButtonText}>SELECT</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -197,6 +197,7 @@ const FoodDatabaseScreen = () => {
               title="Add to Meal Plan"
               onPress={handleAddToMealPlan}
               disabled={!quantity || !selectedMeal || !selectedDay || quantity === '0'}
+              color="#00A36C"
             />
             <Button title="Cancel" onPress={() => setShowSelectionModal(false)} color="orange" />
           </View>
@@ -214,6 +215,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: 'darkgreen',
     marginBottom: 16,
   },
   searchContainer: {
@@ -243,6 +245,7 @@ const styles = StyleSheet.create({
   resultLabel: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'green',
     marginBottom: 8,
   },
   resultText: {
@@ -254,7 +257,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   selectButton: {
-    backgroundColor: 'orange',
+    backgroundColor: '#00A36C',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 4,
@@ -279,12 +282,14 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'darkgreen',
     marginBottom: 16,
     textAlign: 'center',
   },
   modalLabel: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'green',
     marginBottom: 8,
   },
   modalText: {
