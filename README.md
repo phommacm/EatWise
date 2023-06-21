@@ -6,10 +6,50 @@ It consists of a calories counter and meal planner application named "EatWise" u
 
 The project was made by Melvyn Dao and Matthieu Phommachanh from Group 2.
 
+:warning: The present application has been developped using an Android phone!
+
 ## Table of Contents
 
-- [WIP](#wip)
+- [Installation](#Installation)
+- [Run](#Run)
+- [Licence](#Licence)
 
-## WIP
+## Installation
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod nisi eget ante porttitor finibus. Fusce varius nulla ligula, nec consectetur tortor maximus vel. Sed volutpat ultrices fermentum. Nullam vestibulum vehicula nibh, vitae rhoncus erat feugiat sed. Curabitur tincidunt mi in purus auctor sollicitudin. Sed bibendum neque sed nunc viverra, ac fringilla dolor rutrum. Quisque placerat vulputate ex, non suscipit elit accumsan id. Integer convallis, nunc non dignissim rutrum, neque purus bibendum mauris, sit amet egestas tortor ex eu lorem. Maecenas dictum lacus velit, eu tincidunt enim dictum a. Fusce vulputate sem ut urna lobortis, id tincidunt velit aliquet. Vivamus eget purus id mauris iaculis mattis at id tortor. Suspendisse potenti.
+Clone this repository using either HTML
+
+```bash
+git clone https://github.com/phommacm/EatWise.git
+```
+
+or SSH
+
+```bash
+git clone git@github.com:phommacm/EatWise.git
+```
+
+If the package dependencies are not imported properly, you should run the following command in a terminal to install them
+
+```bash
+expo install @react-navigation/native @react-navigation/bottom-tabs @react-native-picker/picker @react-native-async-storage/async-storage
+```
+
+Alternatively, you can use `npm install` to install these packages
+
+You will also need to install the `Expo Go` app on your phone to run the app
+
+## Run
+
+In order to get the application running, place yourself at the root of the repository and run the following
+
+```bash
+npx expo start
+```
+
+Then, simply open `Expo Go` on your phone and scan the QR Code to get started!
+
+## Licence
+
+All rights belong to their respective owners.
+
+All logos used and displayed in this application are the property of their respective owners. Their use is purely for educational purposes.
