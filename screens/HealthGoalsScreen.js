@@ -153,7 +153,7 @@ const HealthGoalsScreen = () => {
           onValueChange={handleActivityLevelChange}
         >
           <Picker.Item label="Choose an option" value="choose_option" />
-          <Picker.Item label="Sedentary" value="sedentary" />
+          <Picker.Item label="Sedentary (little or no exercice)" value="sedentary" />
           <Picker.Item label="Lightly active (exercise 1-3 days/week)" value="lightly_active" />
           <Picker.Item label="Moderately active (exercise 3-5 days/week)" value="moderately_active" />
           <Picker.Item label="Very active (exercise 6-7 days/week)" value="very_active" />
