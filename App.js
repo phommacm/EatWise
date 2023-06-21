@@ -4,7 +4,7 @@
 
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Image, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HealthGoalsScreen from './screens/HealthGoalsScreen';
@@ -18,7 +18,28 @@ export default function App() {
   return (
     <MealPlanProvider>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused }) => {
+              let iconSource;
+              if (route.name === 'Health Goals') {
+                iconSource = focused
+                  ? require('./icons/hg-icon-active.png')
+                  : require('./icons/hg-icon-inactive.png');
+              } else if (route.name === 'Food Database') {
+                iconSource = focused
+                  ? require('./icons/db-icon-active.png')
+                  : require('./icons/db-icon-inactive.png');
+              } else if (route.name === 'Meal Planning') {
+                iconSource = focused
+                  ? require('./icons/mp-icon-active.png')
+                  : require('./icons/mp-icon-inactive.png');
+              }
+              return <Image source={iconSource} style={styles.tabIcon} />;
+            },
+            tabBarShowLabel: false,
+          })}
+        >
           <Tab.Screen name="Health Goals" component={HealthGoalsScreen} />
           <Tab.Screen name="Food Database" component={FoodDatabaseScreen} />
           <Tab.Screen name="Meal Planning" component={MealPlanningScreen} />
@@ -30,10 +51,8 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  tabIcon: {
+    width: 24,
+    height: 24,
   },
 });
